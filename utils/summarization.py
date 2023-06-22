@@ -108,17 +108,10 @@ def get_refined_summarization(docs, model=CHOSEN_COMP_MODEL, max_output_tokens=M
 
 
 def get_mapreduced_summarization(docs, model=CHOSEN_COMP_MODEL, max_output_tokens=MAX_OUTPUT_TOKENS, stream=False, callbacks=[]):
-    print("1")
     PROMPT = PromptTemplate(template=mapreduce_prompt_template, input_variables=["text"])
-    print("2")
-
     llm = helpers.get_llm(model, temperature=0, max_output_tokens=max_output_tokens, stream=stream, callbacks=callbacks)
-    print("3")
     chain = load_summarize_chain(llm, chain_type="map_reduce", map_prompt=PROMPT, combine_prompt=PROMPT, return_intermediate_steps=True)
-    print("4")
-    print(chain)
     summ = chain({"input_documents": docs}, return_only_outputs=True)
-    print("5")
     return summ
 
 
@@ -176,7 +169,6 @@ def summarize_text(text, mode='refine', verbose = False):
     if mode == 'refine':
         summ = get_refined_summarization(docs)
     elif mode == 'map_reduce':
-        print("I am here")
         summ = get_mapreduced_summarization(docs)
     else:
         raise Exception("Invalid mode")
