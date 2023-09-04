@@ -48,6 +48,18 @@ Ensure you have the following installed or set up:
 4. [Node.js](https://nodejs.org/en/download/): A JavaScript runtime needed to run the Azure Functions Core Tools.
 5. [Azure Account](https://portal.azure.com/): You'll need an Azure subscription to deploy your function app to Azure. If you don't have one, you can create a free account.
 
+### Please Note : 
+
+1. Regardless of the function app timeout setting, 230 seconds is the maximum amount of time that an HTTP triggered function can take to respond to a request. You can read more about this [here](https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale#timeout)
+2. If you're looking to only do summarization and not use form-recognizer, remember to uncomment lines 36-52 in init.py and comment lines 18-34. Additionally, change the request body to :
+
+```{json}
+{
+    "file_text": "",
+    "mode": "refine"
+}
+```
+
 ## Steps to Create and Deploy the Azure Function
 
 ### Step 1: Clone the GitHub Repository
