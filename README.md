@@ -1,3 +1,8 @@
+> **Note:**
+> IMPORTANT - Regardless of the function app timeout setting, 230 seconds is the maximum amount of time that an HTTP triggered function can take to respond to a request. You can read more about this [here](https://learn.microsoft.com/en-us/azure/azure-functions/functions-scale#timeout)
+> This means that the documents for summarization should not timeout after 230 seconds.
+> To allow for longer documents, please adapt the code to use asynchonous features.
+
 # Document Summarization Using Azure OpenAI
 Document summarization is a vital tool in the field of Natural Language Processing (NLP) and information retrieval, aimed at extracting the most important information from a document or a set of documents. In this guide, we will walk through the concept of document summarization, why chunking might be necessary, and how to utilize Azure OpenAI's GPT models for this task. We'll cover two main approaches: map-reduce and refine.
 
